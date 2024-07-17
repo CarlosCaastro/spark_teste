@@ -9,9 +9,8 @@ graph TD;
         A2[Procedure para truncar tabela principal]
         A3[Fim]
         A --> A1
-        A --> A2
+        A1 --> A2
         A2 --> A3
-        A1 --> A3
 
     end
 
