@@ -4,31 +4,39 @@ graph TD;
     B[Extração das Fontes de Dados Transacional e Analítico]
     C[Carga nas Tabelas do Banco de Dados Analítico]
 
-    subgraph Passo_1:_Truncar_as_Tabelas_do_Banco_Analítico
-        A1[TRUNCATE TABLE tabela_analitica1]
-        A2[TRUNCATE TABLE tabela_analitica2]
+    subgraph Passo_1: Truncar as Tabelas do Banco Analítico
+        A1[Procedure para truncar tabela principal]
+        A2[Procedure para truncar tabela principal]
         A --> A1
         A --> A2
+
     end
 
     subgraph Passo_2:_Extração_das_Fontes_de_Dados
-        B1[Conectar ao Banco Transacional]
-        B2[Extrair Dados do Banco Transacional]
-        B3[Conectar ao Banco Analítico]
-        B4[Extrair Dados do Banco Analítico]
+        B1[Se a view estiver no banco Transacional]
+        B2[Se a view estiver no banco Analítico]
+        B3[Conectar ao Banco Transacional]
+        B4[Extrair Dados do Banco Transacional]
+        B5[Conectar ao Banco Analítico]
+        B6[Extrair Dados do Banco Analítico]
         B --> B1
-        B --> B3
-        B1 --> B2
+        B --> B2
+        B1 --> B3
+        B2 --> B5
         B3 --> B4
+        B5 --> B6
+        
+
     end
 
     subgraph Passo_3:_Carga_nas_Tabelas_do_Banco_de_Dados_Analítico
-        C1[Inserir Dados na Tabela Analítica 1]
-        C2[Inserir Dados na Tabela Analítica 2]
+        C1[Inserir Dados na Tabela Temporaria]
+        C2[Inserção dos dados na partição da Tabela Principal]
+
         C --> C1
-        C --> C2
+        C1 --> C2
     end
 
-    A --> B
-    B --> C
+    A1,A2 --> B
+    B4,B6 --> C
 ```
