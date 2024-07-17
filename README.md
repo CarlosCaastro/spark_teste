@@ -7,8 +7,11 @@ graph TD;
     subgraph Passo_1: Truncar as Tabelas do Banco Analítico
         A1[Procedure para truncar tabela principal]
         A2[Procedure para truncar tabela principal]
+        A3[Fim]
         A --> A1
         A --> A2
+        A2 --> A3
+        A1 --> A3
 
     end
 
@@ -19,13 +22,15 @@ graph TD;
         B4[Extrair Dados do Banco Transacional]
         B5[Conectar ao Banco Analítico]
         B6[Extrair Dados do Banco Analítico]
+        B7[Fim]
         B --> B1
         B --> B2
         B1 --> B3
         B2 --> B5
         B3 --> B4
         B5 --> B6
-        
+        B4 --> B7
+        B6 --> B7
 
     end
 
@@ -37,6 +42,6 @@ graph TD;
         C1 --> C2
     end
 
-    A1,A2 --> B
-    B4,B6 --> C
+    A3 --> B
+    B7 --> C
 ```
